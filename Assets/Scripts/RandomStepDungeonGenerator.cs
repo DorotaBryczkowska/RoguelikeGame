@@ -3,27 +3,27 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGenerator
+public class RandomStepDungeonGenerator : AbstractDungeonGenerator
 {
 
     [SerializeField]
-    protected SimpleRandomWalkData randomWalkParameters;
+    protected RandomStepData randomStepParameters;
 
-    protected override void RunProceduralGeneration()
+    protected override void StartProceduralGeneration()
     {
-        HashSet<Vector2Int> floorPositions = RunRandomWalk(randomWalkParameters, startPosition);
+        HashSet<Vector2Int> floorPositions = RunRandomStep(randomStepParameters, startPosition);
         tilemapVisualizer.Clear();
         tilemapVisualizer.PaintFloorTiles(floorPositions);
         WallGenerator.CreateWalls(floorPositions, tilemapVisualizer);
     }
 
-    protected HashSet<Vector2Int> RunRandomWalk(SimpleRandomWalkData parameters, Vector2Int position)
+    protected HashSet<Vector2Int> RunRandomStep(RandomStepData parameters, Vector2Int position)
     {
         var currentPosition = position;
         HashSet<Vector2Int> floorPositions = new();
         for(int i = 0; i < parameters.iterations; i++)
         {
-            var path = ProceduralGenerationAlgorithms.SimpleRandomWalk(currentPosition, parameters.walkLength);
+            var path = ProceduralGenerationAlgorithms.RandomStep(currentPosition, parameters.walkLength);
             floorPositions.UnionWith(path); 
             if(parameters.startRandomlyEachIteration)
             {

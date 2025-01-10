@@ -10,8 +10,8 @@ public abstract class AbstractDungeonGenerator : MonoBehaviour
     public void GenerateDungeon()
     {
         tilemapVisualizer.Clear();
-        RunProceduralGeneration();
+        StartProceduralGeneration();
     }
 
-    protected abstract void RunProceduralGeneration();
+    protected abstract void StartProceduralGeneration();
 }

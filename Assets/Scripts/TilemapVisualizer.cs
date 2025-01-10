@@ -63,27 +63,27 @@ public class TilemapVisualizer : MonoBehaviour
         }
     }
 
-    internal void PaintSingleBasicWall(Vector2Int position, string binaryType)
+    internal void PaintSingleNormalWall(Vector2Int position, string binaryType)
     {
         int typeAsInt = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
-        if(WallTypesHelper.wallTop.Contains(typeAsInt))
+        if(WallTypesInfo.wallTop.Contains(typeAsInt))
         {
             tile = wallTopTiles[UnityEngine.Random.Range(0, wallTopTiles.Length)];
         }
-        else if(WallTypesHelper.wallSideRight.Contains(typeAsInt))
+        else if(WallTypesInfo.wallSideRight.Contains(typeAsInt))
         {
             tile = wallSideRightTiles[UnityEngine.Random.Range(0, wallSideRightTiles.Length)];
         }
-        else if (WallTypesHelper.wallSideLeft.Contains(typeAsInt))
+        else if (WallTypesInfo.wallSideLeft.Contains(typeAsInt))
         {
             tile = wallSideLeftTiles[UnityEngine.Random.Range(0, wallSideLeftTiles.Length)];
         }
-        else if (WallTypesHelper.wallBottm.Contains(typeAsInt))
+        else if (WallTypesInfo.wallBottm.Contains(typeAsInt))
         {
             tile = wallBottomTiles[UnityEngine.Random.Range(0, wallBottomTiles.Length)];
         }
-        else if (WallTypesHelper.wallFull.Contains(typeAsInt))
+        else if (WallTypesInfo.wallFull.Contains(typeAsInt))
         {
             tile = wallFull;
         }
@@ -105,30 +105,30 @@ public class TilemapVisualizer : MonoBehaviour
         int typeAsInt = Convert.ToInt32(binaryType, 2);
         TileBase tile = null;
 
-        if(WallTypesHelper.wallInnerCornerDownLeft.Contains(typeAsInt))
+        if(WallTypesInfo.wallInnerCornerDownLeft.Contains(typeAsInt))
         {
             tile = wallInnerCornerDL;
-        }else if (WallTypesHelper.wallInnerCornerDownRight.Contains(typeAsInt))
+        }else if (WallTypesInfo.wallInnerCornerDownRight.Contains(typeAsInt))
         {
             tile = wallInnerCornerDR;
-        } else if (WallTypesHelper.wallDiagonalCornerDownLeft.Contains(typeAsInt))
+        } else if (WallTypesInfo.wallDiagonalCornerDownLeft.Contains(typeAsInt))
         {
             tile = wallDiagonalCornerDL;
-        } else if (WallTypesHelper.wallDiagonalCornerDownRight.Contains(typeAsInt))
+        } else if (WallTypesInfo.wallDiagonalCornerDownRight.Contains(typeAsInt))
         {
             tile = wallDiagonalCornerDR;
-        } else if (WallTypesHelper.wallDiagonalCornerUpRight.Contains(typeAsInt))
+        } else if (WallTypesInfo.wallDiagonalCornerUpRight.Contains(typeAsInt))
         {
             tile = wallDiagonalCornerUR;
-        } else if (WallTypesHelper.wallDiagonalCornerUpLeft.Contains(typeAsInt))
+        } else if (WallTypesInfo.wallDiagonalCornerUpLeft.Contains(typeAsInt))
         {
             tile = wallDiagonalCornerUL;
         }
-        else if (WallTypesHelper.wallFullEightDirections.Contains(typeAsInt))
+        else if (WallTypesInfo.wallFullEightDirections.Contains(typeAsInt))
         {
             tile = wallFull;
         }
-        else if (WallTypesHelper.wallBottmEightDirections.Contains(typeAsInt))
+        else if (WallTypesInfo.wallBottmEightDirections.Contains(typeAsInt))
         {
             tile = wallBottomTiles[UnityEngine.Random.Range(0, wallBottomTiles.Length)];
         }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public static class WallTypesHelper
+public static class WallTypesInfo
 {
     public static HashSet<int> wallTop = new()
     {
@@ -149,5 +149,4 @@ public static class WallTypesHelper
     {
         0b01000001
     };
-
 }

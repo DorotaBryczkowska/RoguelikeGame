@@ -5,9 +5,9 @@ public static class WallGenerator
 {
     public static void CreateWalls(HashSet<Vector2Int> floorPositions, TilemapVisualizer tilemapVisualizer)
     {
-        var basicWallPositions = FindWallsInDirections(floorPositions, Direction2D.cardinalDirectionsList);
+        var normalWallPositions = FindWallsInDirections(floorPositions, Direction2D.cardinalDirectionsList);
         var cornerWallPositions = FindWallsInDirections(floorPositions, Direction2D.diagonalDirectionsList);
-        CreateBasicWalls(tilemapVisualizer, basicWallPositions, floorPositions);
+        CreateNormalWalls(tilemapVisualizer, normalWallPositions, floorPositions);
         CreateCornerWalls(tilemapVisualizer, cornerWallPositions, floorPositions);
     }
 
@@ -32,7 +32,7 @@ public static class WallGenerator
         }
     }
 
-    private static void CreateBasicWalls(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> basicWallPositions, HashSet<Vector2Int> floorPositions)
+    private static void CreateNormalWalls(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> basicWallPositions, HashSet<Vector2Int> floorPositions)
     {
         foreach (var position in basicWallPositions)
         {
@@ -49,7 +49,7 @@ public static class WallGenerator
                     neighboursBinayValue += "0";
                 }
             }
-            tilemapVisualizer.PaintSingleBasicWall(position, neighboursBinayValue);
+            tilemapVisualizer.PaintSingleNormalWall(position, neighboursBinayValue);
         }
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DungeonRoomsGenerator : SimpleRandomWalkDungeonGenerator
+public class DungeonRoomsGenerator : RandomStepDungeonGenerator
 {
     [SerializeField]
     private int minRoomWidth = 4, minRoomHeight = 4;
@@ -30,7 +30,7 @@ public class DungeonRoomsGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private List<GameObject> enemyPrefabs;
 
-    protected override void RunProceduralGeneration()
+    protected override void StartProceduralGeneration()
     {
         CreateRooms();
     }
@@ -94,7 +94,7 @@ public class DungeonRoomsGenerator : SimpleRandomWalkDungeonGenerator
         {
             var roomBounds = roomsList[i];
             var roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
-            var roomFloor = RunRandomWalk(randomWalkParameters, roomCenter);
+            var roomFloor = RunRandomStep(randomStepParameters, roomCenter);
             foreach (var position in roomFloor)
             {
                 if(position.x >= (roomBounds.xMin + offset) && position.x <= (roomBounds.xMax - offset) && 
@@ -115,7 +115,7 @@ public class DungeonRoomsGenerator : SimpleRandomWalkDungeonGenerator
 
         while (roomCenters.Count>0)
         {
-            Vector2Int closest = FindClosestPointTo(currentRoomCenter, roomCenters);
+            Vector2Int closest = FindPointClosestTo(currentRoomCenter, roomCenters);
             roomCenters.Remove(closest);
             HashSet<Vector2Int> newCorridor = CreateCorridor(currentRoomCenter, closest);
             currentRoomCenter = closest;
@@ -156,7 +156,7 @@ public class DungeonRoomsGenerator : SimpleRandomWalkDungeonGenerator
         return corridor;
     }
 
-    private Vector2Int FindClosestPointTo(Vector2Int currentRoomCenter, List<Vector2Int> roomCenters)
+    private Vector2Int FindPointClosestTo(Vector2Int currentRoomCenter, List<Vector2Int> roomCenters)
     {
         Vector2Int closest = Vector2Int.zero;
         float distance = float.MaxValue;
@@ -188,7 +188,7 @@ public class DungeonRoomsGenerator : SimpleRandomWalkDungeonGenerator
                     var spawnedProp = Instantiate(propPrefab, new Vector3(randomPosition.x, randomPosition.y, 0), Quaternion.identity);
                     spawnedProp.transform.parent=roomPropsParent.transform;
                     spawnedProp.tag = "GeneratedForDungeon";
-                    usedPositions.Add(randomPosition); // Oznacz tę pozycję jako zajętą
+                    usedPositions.Add(randomPosition);
                 }
             }
         }
@@ -212,13 +212,12 @@ public class DungeonRoomsGenerator : SimpleRandomWalkDungeonGenerator
         {
             return validPositions[Random.Range(0, validPositions.Count)];
         }
-        return Vector2Int.zero; // Brak dostępnych pozycji
+        return Vector2Int.zero;
     }
 
 
     private bool IsNearWall(Vector2Int position, HashSet<Vector2Int> floor)
     {
-        // Współrzędne sąsiadów (8 kierunków)
         Vector2Int[] neighbors = {
         position + Vector2Int.up,
         position + Vector2Int.down,
@@ -232,11 +231,11 @@ public class DungeonRoomsGenerator : SimpleRandomWalkDungeonGenerator
 
         foreach (var neighbor in neighbors)
         {
-            if (!floor.Contains(neighbor)) // Jeśli sąsiad nie należy do podłogi, to jest to ściana
+            if (!floor.Contains(neighbor))
             {
                 return true;
             }
         }
-        return false; // Wszystkie sąsiady należą do podłogi
+        return false;
     }
 }
