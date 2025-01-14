@@ -38,10 +38,7 @@ public class PlayerAttack : MonoBehaviour
         timer = 0f;
         playerMovement.enabled = false;
         anim.SetTrigger("Attack");
-        if (playerRigidbody != null)
-        {
-            playerRigidbody.velocity = Vector2.zero;
-        }
+        playerRigidbody.velocity = Vector2.zero;
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackableLayer);
 

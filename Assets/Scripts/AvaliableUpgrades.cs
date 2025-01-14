@@ -2,7 +2,7 @@
 
 public class AvaliableUpgrades : MonoBehaviour
 {
-    public int upgradeNumber;
+    public int upgradeType;
     public GameObject descriptionText;
 
     private PlayerUpgrades playerUpgrades;
@@ -58,7 +58,7 @@ public class AvaliableUpgrades : MonoBehaviour
     {
         if (playerUpgrades != null && playerUpgrades.upgradesAvaliable > 0)
         {
-            playerUpgrades.UpgradePlayer(upgradeNumber);
+            playerUpgrades.UpgradePlayer(upgradeType);
             playerUpgrades.upgradesAvaliable--;
         }
     }

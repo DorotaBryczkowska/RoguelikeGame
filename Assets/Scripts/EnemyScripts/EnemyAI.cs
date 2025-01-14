@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
 
     private Animator enemyAnim;
     private Vector2 roamPosition;
-    private bool isFollowingPlayer = false;
+    private bool isDetectingPlayer = false;
     private bool isWaiting = false;
     private SpriteRenderer spriteRenderer;
     private Vector2 lastPosition;
@@ -18,7 +18,6 @@ public class EnemyAI : MonoBehaviour
 
     void Start()
     {
-        SetNewRoamPosition();
         enemyAnim = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyHealth= GetComponent<EnemyHealth>();
@@ -42,15 +41,14 @@ public class EnemyAI : MonoBehaviour
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
             if (distanceToPlayer <= detectionRange)
             {
-                isFollowingPlayer = true;
+                isDetectingPlayer = true;
             }
-            else if (isFollowingPlayer && distanceToPlayer > detectionRange)
+            else if (isDetectingPlayer && distanceToPlayer > detectionRange)
             {
-                isFollowingPlayer = false;
-                SetNewRoamPosition();
+                isDetectingPlayer = false;
             }
 
-            if (isFollowingPlayer)
+            if (isDetectingPlayer)
             {
                 FollowPlayer();
             }
@@ -71,40 +69,23 @@ public class EnemyAI : MonoBehaviour
 
     void Roam()
     {
-        if (!isWaiting)
+        if (isWaiting)
         {
-            transform.position = Vector2.MoveTowards(transform.position, roamPosition, speed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, roamPosition) < 0.1f)
-            {
-                RunAnim(false);
-                StartCoroutine(SetNewRoamPositionWithDelay());
-            }
-            else
-            {
-                FaceMovementDirection();
-                RunAnim(true);
-            }
+            RunAnim(false);
+            return;
+        }
+
+        transform.position = Vector2.MoveTowards(transform.position, roamPosition, speed * Time.deltaTime);
+
+        if (Vector2.Distance(transform.position, roamPosition) < 0.1f)
+        {
+            RunAnim(false);
+            StartCoroutine(WaitToSetNewRoamPosition());
         }
         else
         {
-            RunAnim(false);
-        }
-    }
-
-    IEnumerator SetNewRoamPositionWithDelay()
-    {
-        isWaiting = true;
-        yield return new WaitForSecondsRealtime(2f);
-        Vector2 randomDirection = Random.insideUnitCircle * roamRadius;
-        roamPosition = (Vector2)transform.position + randomDirection;
-        isWaiting = false;
-    }
-
-    void SetNewRoamPosition()
-    {
-        if (!isWaiting)
-        {
-            StartCoroutine(SetNewRoamPositionWithDelay());
+            FaceMovementDirection();
+            RunAnim(true);
         }
     }
 
@@ -112,8 +93,23 @@ public class EnemyAI : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player"))
         {
-            SetNewRoamPosition();
+            StartCoroutine(WaitToSetNewRoamPosition());
         }
+    }
+
+    private IEnumerator WaitToSetNewRoamPosition()
+    {
+        isWaiting = true;
+        RunAnim(false);
+        yield return new WaitForSeconds(2f);
+        SetNewRoamPosition();
+        isWaiting = false;
+    }
+
+    private void SetNewRoamPosition()
+    {
+        Vector2 randomDirection = Random.insideUnitCircle * roamRadius;
+        roamPosition = (Vector2)transform.position + randomDirection;
     }
 
     void RunAnim(bool isRunning)

@@ -24,7 +24,7 @@ public class PlayerUpgrades : MonoBehaviour
         {
             upgradesAvaliable++;
             experience -= expToNextUpgrade;
-            expToNextUpgrade = Mathf.RoundToInt(expToNextUpgrade * 1.5f); // Zwiększa wymagany EXP
+            expToNextUpgrade = Mathf.RoundToInt(expToNextUpgrade * 1.5f); 
         }
     }
 
