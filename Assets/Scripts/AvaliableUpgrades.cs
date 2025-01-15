@@ -4,6 +4,7 @@ public class AvaliableUpgrades : MonoBehaviour
 {
     public int upgradeType;
     public GameObject descriptionText;
+    public AudioSource buyUpgradeSound;
 
     private PlayerUpgrades playerUpgrades;
     private bool isPlayerInRange = false;
@@ -59,6 +60,7 @@ public class AvaliableUpgrades : MonoBehaviour
         if (playerUpgrades != null && playerUpgrades.upgradesAvaliable > 0)
         {
             playerUpgrades.UpgradePlayer(upgradeType);
+            buyUpgradeSound.Play();
             playerUpgrades.upgradesAvaliable--;
         }
     }
