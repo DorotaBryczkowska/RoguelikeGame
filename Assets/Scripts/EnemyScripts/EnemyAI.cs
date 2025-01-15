@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
     private bool isWaiting = false;
     private SpriteRenderer spriteRenderer;
     private Vector2 lastPosition;
-    EnemyHealth enemyHealth;
+    private EnemyHealth enemyHealth;
 
     void Start()
     {

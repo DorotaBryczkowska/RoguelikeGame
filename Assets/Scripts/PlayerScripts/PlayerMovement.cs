@@ -3,10 +3,10 @@
 public class PlayerMovement : MonoBehaviour
 { 
     public float movementSpeed = 4.5f;
+    
     private Rigidbody2D playerRigidbody;
     private Vector2 movementDirection;
     private bool playerFacingRight = true;
-
     Animator animator;
 
     void Start()

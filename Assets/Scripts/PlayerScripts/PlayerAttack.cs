@@ -41,7 +41,6 @@ public class PlayerAttack : MonoBehaviour
         playerRigidbody.velocity = Vector2.zero;
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackableLayer);
-
         foreach(Collider2D objectHit in hitObjects)
         {
             objectHit.GetComponent<EnemyHealth>().TakeDamage(damagePerAttack);
