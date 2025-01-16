@@ -51,15 +51,20 @@ public class TilemapVisualizer : MonoBehaviour
             DestroyImmediate(wallColliders);
         }
 
-        ClearProps();
+        ClearPropsAndEnemies();
     }
 
-    public void ClearProps()
+    public void ClearPropsAndEnemies()
     {
         var propsToDestroy = GameObject.FindGameObjectsWithTag("GeneratedForDungeon");
+        var enemiesToDestroy = GameObject.FindGameObjectsWithTag("Attackable");
         foreach (var prop in propsToDestroy)
         {
             DestroyImmediate(prop);
+        }
+        foreach (var enemy in enemiesToDestroy)
+        {
+            DestroyImmediate(enemy);
         }
     }
 

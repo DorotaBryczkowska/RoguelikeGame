@@ -435,7 +435,7 @@ RectTransform:
   m_Father: {fileID: 1771297319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -6292,7 +6292,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &1143516916
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10347,6 +10347,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1161025092181155513, guid: 4419baaf25589a944a727bd7af010fa3,
         type: 3}
+      propertyPath: upgradeType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161025092181155513, guid: 4419baaf25589a944a727bd7af010fa3,
+        type: 3}
       propertyPath: buyUpgradeSound
       value: 
       objectReference: {fileID: 1869444455}
@@ -10507,6 +10512,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AttackUpgrade
+      objectReference: {fileID: 0}
+    - target: {fileID: 1447728449433233649, guid: 2c2938f44bff1b84a91dc2110883d4b2,
+        type: 3}
+      propertyPath: upgradeType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1447728449433233649, guid: 2c2938f44bff1b84a91dc2110883d4b2,
         type: 3}
@@ -10676,6 +10686,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526874860379689131, guid: 032c2c50a16293c44a7d805b709e73a2,
+        type: 3}
+      propertyPath: generator
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8526874860379689131, guid: 032c2c50a16293c44a7d805b709e73a2,
         type: 3}

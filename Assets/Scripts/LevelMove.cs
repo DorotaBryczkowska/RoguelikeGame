@@ -9,6 +9,9 @@ public class LevelMove : MonoBehaviour
 
     private readonly float transitionTime=1f;
     private bool isPlayerInRange = false;
+    
+    [SerializeField] 
+    private AbstractDungeonGenerator generator;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -38,6 +41,14 @@ public class LevelMove : MonoBehaviour
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+        if(sceneBuildIndex == 1)
+        {
+            SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+        }
+        else
+        {
+            generator.GenerateDungeon();
+            transition.SetTrigger("End");
+        }
     }
 }
