@@ -7,7 +7,7 @@ public static class SaveSystem
     public static void SavePlayer(PlayerHealth playerHealth, PlayerMovement playerMovement, PlayerAttack playerAttack, PlayerUpgrades playerUpgrades)
     {
         BinaryFormatter formatter = new();
-        string path = Application.persistentDataPath + "/player.fun";
+        string path = Application.persistentDataPath + "/player.bin";
 
         using FileStream stream = new(path, FileMode.Create);
         PlayerData data = new(playerHealth, playerMovement, playerAttack, playerUpgrades);
@@ -16,7 +16,7 @@ public static class SaveSystem
 
     public static PlayerData LoadPlayer()
     {
-        string path = Application.persistentDataPath + "/player.fun";
+        string path = Application.persistentDataPath + "/player.bin";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new();
