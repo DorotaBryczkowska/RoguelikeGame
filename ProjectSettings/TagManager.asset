@@ -10,6 +10,7 @@ TagManager:
   - Spawner
   - EnemySpawner
   - GeneratedForDungeon
+  - Teleporter
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class DungeonRoomsGenerator : RandomStepDungeonGenerator
+public class DungeonGenerator : RandomStepDungeonGenerator
 {
     [SerializeField]
     private int minRoomWidth = 4, minRoomHeight = 4;
@@ -32,10 +32,10 @@ public class DungeonRoomsGenerator : RandomStepDungeonGenerator
 
     protected override void StartProceduralGeneration()
     {
-        CreateRooms();
+        CreateDungeon();
     }
 
-    private void CreateRooms()
+    private void CreateDungeon()
     {
         var roomsList = ProceduralGenerationAlgorithms.BinarySpacePartitioning(new BoundsInt((Vector3Int)startPosition,
             new Vector3Int(dungeonWidth, dungeonHeight, 0)), minRoomWidth, minRoomHeight);
@@ -52,7 +52,7 @@ public class DungeonRoomsGenerator : RandomStepDungeonGenerator
         var spawnPoint = roomCenters[0];
         var lastRoom = roomCenters.Count-1;
         GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(spawnPoint.x, spawnPoint.y, 0);
-        GameObject.FindGameObjectWithTag("Spawner").transform.position = new Vector3(roomCenters[lastRoom].x, roomCenters[lastRoom].y, 0);
+        GameObject.FindGameObjectWithTag("Teleporter").transform.position = new Vector3(roomCenters[lastRoom].x, roomCenters[lastRoom].y, 0);
         GameObject.FindGameObjectWithTag("MainCamera").transform.position = new Vector3(spawnPoint.x, spawnPoint.y, -1);
 
         HashSet<Vector2Int> corridors = ConnectRooms(roomCenters);
