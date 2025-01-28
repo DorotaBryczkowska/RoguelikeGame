@@ -22,6 +22,11 @@ public class PlayerAttack : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
         playerMovement= GetComponent<PlayerMovement>();
         playerRigidbody = GetComponent<Rigidbody2D>();
+
+        if (PlayerPrefs.GetInt("maxDamage") != 0)
+        {
+            damagePerAttack = PlayerPrefs.GetInt("maxDamage");
+        }
     }
 
     void Update()
@@ -31,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
         {
             Attack();
         }
+        PlayerPrefs.SetInt("maxDamage", damagePerAttack);
     }
 
     void Attack()
@@ -66,5 +72,10 @@ public class PlayerAttack : MonoBehaviour
     public void IncreaseDamage(int amount)
     {
         damagePerAttack += amount;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey("maxDamage");
     }
 }

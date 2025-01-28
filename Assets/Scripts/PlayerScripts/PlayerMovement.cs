@@ -13,12 +13,18 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        if (PlayerPrefs.GetInt("maxSpeed") != 0)
+        {
+            movementSpeed = PlayerPrefs.GetFloat("maxSpeed");
+        }
     }
 
     void Update()
     {
         movementDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         HandleFlip(Input.GetAxisRaw("Horizontal"));
+        PlayerPrefs.SetFloat("maxSpeed", movementSpeed);
     }
 
     void FixedUpdate()
@@ -56,5 +62,10 @@ public class PlayerMovement : MonoBehaviour
     public void IncreaseSpeed(float amount)
     {
         movementSpeed += amount;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey("maxSpeed");
     }
 }

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -36,10 +35,5 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.Play();
         Time.timeScale = 1f;
         isPaused = false;
-    }
-
-    public void Menu()
-    {
-        SceneManager.LoadScene(2);
     }
 }

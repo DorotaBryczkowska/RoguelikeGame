@@ -25,6 +25,19 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         currentHealth = startingHealth;
         healthSlider.maxValue = startingHealth;
+
+        if(PlayerPrefs.GetInt("maxHealth")!=0)
+        {
+            UpgradedHealth();
+        }
+    }
+
+    private void UpgradedHealth()
+    {
+        startingHealth = PlayerPrefs.GetInt("maxHealth");
+        currentHealth = PlayerPrefs.GetInt("maxHealth");
+        healthSlider.maxValue = PlayerPrefs.GetInt("maxHealth");
+        healthSlider.value = PlayerPrefs.GetInt("maxHealth");
     }
 
     void Update()
@@ -38,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
             damageImage.color = Color.Lerp(damageImage.color, Color.clear, damageFlashSpeed * Time.deltaTime);
         }
         damaged = false;
+        PlayerPrefs.SetInt("maxHealth", startingHealth);
     }
 
     public void TakeDamage(int amount)
@@ -72,5 +86,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += amount;
         healthSlider.maxValue = startingHealth;
         healthSlider.value = currentHealth;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteKey("maxHealth");
     }
 }
