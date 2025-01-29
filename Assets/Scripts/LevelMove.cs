@@ -41,14 +41,29 @@ public class LevelMove : MonoBehaviour
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        if(sceneBuildIndex == 1)
-        {
-            SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
-        }
-        else
+
+        if (sceneBuildIndex == 0)
         {
             generator.GenerateDungeon();
             transition.SetTrigger("End");
         }
+        else
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.LoadScene(sceneBuildIndex, LoadSceneMode.Single);
+        }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == sceneBuildIndex)
+        {
+            generator = FindObjectOfType<AbstractDungeonGenerator>();
+            if (generator != null)
+            {
+                generator.GenerateDungeon();
+            }
+        }
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
