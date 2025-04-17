@@ -2,7 +2,7 @@
 
 
 ## Opis aplikacji
-Głównym założeniem aplikacji jest spełnienie pętli gry charakterystycznej dla gier typu roguelike.
+Głównym założeniem aplikacji jest spełnienie pętli gry charakterystycznej dla gier typu roguelike. Aplikacja została wykonana w silniku Unity Engine 2022.3.48f1, z pomocą środowiska Visual Studio. Scena, która powinna zostać jako pierwsza otworzona, to scena nazwana „HubScene”.
 
 Główne elementy gry:
 * Poruszanie się postacią po wygenerowaniem świecie i wchodzenie w interakcję z nim.
@@ -27,7 +27,7 @@ W celu wykonania aplikacji zostały użyte zasoby takie jak:
 
 
 ## Application description
-The main premise of the application is to fulfill the gameplay loop typical of roguelike games.
+The main premise of the application is to fulfill the gameplay loop typical of roguelike games. The application was made in Unity Engine 2022.3.48f1, with the help of the Visual Studio environment. The scene that should be opened first is the scene called "HubScene".
 
 Key Gameplay Features:
 * Moving around and interacting with a generated world.
