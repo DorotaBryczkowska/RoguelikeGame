@@ -22,6 +22,8 @@ W celu wykonania aplikacji zostały użyte zasoby takie jak:
 * RPG Essentials Sound Effects - FREE!, którego twórcą jest użytkownik o nazwie Leohpaz. Jest to zestaw efektów, które zostały wykorzystane w celu dodania szaty dźwiękowej do aplikacji.
 * Soft RPG Music Pack, którego twórcą jest użytkownik o nazwie Ezhdeha – Sound Maker. Podobnie jak zestaw zasobów powyżej, muzyka zawarta w tej paczce została użyta w celu wzbogacenia szaty dźwiękowej aplikacji, jak np. muzyka w tle.
 
+Dodatkowo, w celu poprawnego wykonania projektu proceduralną generację lochów bazowano na samouczku od Sunny Valley Studio - Unity Procedural Dungeon Generation 2D.
+
 
 # ENG - Roguelike computer game
 
@@ -46,3 +48,5 @@ In order to create the application, the following resources were used:
 * Enemy Galore 1 - Pixel Art, created by a user named Admurin. The resource contains many models and animations that were used to visualize player's opponents.
 * RPG Essentials Sound Effects - FREE!, created by a user named Leohpaz. This is a set of effects that were used to add sound design to the application.
 * Soft RPG Music Pack, created by user Ezhdeha – Sound Maker. Like the resource pack above, the music in this pack was used to enhance the sound design of the application, such as background music.
+
+Additionally, in order to correctly execute the project, the procedural generation of dungeons was based on the tutorial from Sunny Valley Studio - Unity Procedural Dungeon Generation 2D.
